@@ -1,5 +1,5 @@
 """Python 100例"""
-
+import sys
 # exercise 1 
 def exercise1() -> None:
     """有四个数字：1、2、3、4，能组成多少个互不相同且无重复数字的三位数？各是多少？"""
@@ -51,9 +51,16 @@ def exercise2() -> None:
         if I > limit[i]:
             jiangjin += (I-limit[i])*ratio[i]
             I= limit[i]
-
-
-
     print("总奖金是{}万元".format(jiangjin))
+
+def exercise3() -> None:
+    """一个整数，它加上100后是一个完全平方数，再加上168又是一个完全平方数，请问该数是多少？"""
+    num=0
+    while(1):
+        if not((num+100)**0.5%1 or (num+168)**0.5%1):
+            print("这个整数是：{}".format(num))
+            sys.exit()
+        num+=1
+    
 if __name__ == "__main__":
-    exercise2()
+    exercise3()
