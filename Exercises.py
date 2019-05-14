@@ -53,6 +53,7 @@ def exercise2() -> None:
             I= limit[i]
     print("总奖金是{}万元".format(jiangjin))
 
+# exercise 3
 def exercise3() -> None:
     """一个整数，它加上100后是一个完全平方数，再加上168又是一个完全平方数，请问该数是多少？"""
     num=0
@@ -61,6 +62,30 @@ def exercise3() -> None:
             print("这个整数是：{}".format(num))
             sys.exit()
         num+=1
-    
+
+# exercise 4
+def exercise4() -> None:
+    """输入某年某月某日，判断这一天是这一年的第几天？"""
+    date = input("输入日期xxxx-xx-xx：")
+    year,month,day = tuple(date.split("-"))
+    year = int(year)
+    month = int(month)
+    print(month)
+    day = int(day)
+    total = int(0)
+    months = [31,28,31,30,31,30,31,31,30,31,30,31]
+
+    for i in range(1,month):
+        total += months[i-1]
+        if i == 2:
+            if year%100:
+                if not(year%4):
+                    total+=1
+            else:
+                if not(year%400):
+                    total+=1
+    total += day
+    print(total)
+
 if __name__ == "__main__":
-    exercise3()
+    exercise4()
