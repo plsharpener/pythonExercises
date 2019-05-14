@@ -1,8 +1,5 @@
 """Python 100例"""
 
-
-
-
 # exercise 1 
 def exercise1() -> None:
     """有四个数字：1、2、3、4，能组成多少个互不相同且无重复数字的三位数？各是多少？"""
@@ -34,18 +31,29 @@ def exercise2() -> None:
     """
     I = float(input("输入本月收益："))
     jiangjin = 0.0
-    if I <= 10:
-        jiangjin = I*10*0.01
-    elif I <= 20:
-        jiangjin = 1+(I-10)*7.5*0.01
-    elif I <= 40:
-        jiangjin = 1+0.75+(I-20)*5*0.01
-    elif I <= 60:
-        jiangjin = 1+0.75+1+(I-40)*3*0.01
-    elif I <= 100:
-        jiangjin = 1+0.75+1+0.6+(I-60)*1.5*0.01
-    else:
-        jiangjin = 1+0.75+1+0.6+0.6+(I-100)*1*0.01
+    #方法1
+    # if I <= 10:
+    #     jiangjin = I*10*0.01
+    # elif I <= 20:
+    #     jiangjin = 1+(I-10)*7.5*0.01
+    # elif I <= 40:
+    #     jiangjin = 1+0.75+(I-20)*5*0.01
+    # elif I <= 60:
+    #     jiangjin = 1+0.75+1+(I-40)*3*0.01
+    # elif I <= 100:
+    #     jiangjin = 1+0.75+1+0.6+(I-60)*1.5*0.01
+    # else:
+    #     jiangjin = 1+0.75+1+0.6+0.6+(I-100)*1*0.01
+    #方法2
+    limit = [100,60,40,20,10,0]
+    ratio = [0.01,0.015,0.03,0.05,0.075,0.1]
+    for i in range(6):
+        if I > limit[i]:
+            jiangjin += (I-limit[i])*ratio[i]
+            I= limit[i]
+
+
+
     print("总奖金是{}万元".format(jiangjin))
 if __name__ == "__main__":
     exercise2()
