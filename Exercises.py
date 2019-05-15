@@ -91,7 +91,17 @@ def exercise4() -> None:
 def exercise5() -> None:
     """输入三个整数x,y,z，请把这三个数由小到大输出"""
     number = input("输入三个数字")
-    x,y,z = tuple(number)
+    x,y,z = tuple(number.split(","))
+    x = int(x)
+    y = int(y)
+    z = int(z)
+    if x>y:
+        x,y=y,x
+    if x>z:
+        x,z=z,x
+    if y>z:
+        y,z=z,y
+    print(x,y,z)
 
 if __name__ == "__main__":
-    exercise4()
+    exercise5()
