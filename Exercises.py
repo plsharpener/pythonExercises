@@ -137,7 +137,14 @@ def exercise9() -> None:
     time.sleep(1)
     print("sleep 1s")
 
+# exercise 10
+def exercise10() -> None:
+    """暂停一秒输出，并格式化当前时间"""
+    print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
+    time.sleep(1)
+    print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
-    exercise9()
+    exercise10()
