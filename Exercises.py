@@ -175,7 +175,34 @@ def exercise13() -> None:
         if (eval(stri[0])**3+eval(stri[1])**3+eval(stri[2])**3) == i:   #参考https://www.cnblogs.com/wuxiangli/p/6046800.html
             print(i)                                                    #eval(string) 字符串转化为算式   repr(x)  将对象x转化成表达字符串 
 
+# exercise 14
+def PrimeNumber(n:int) -> list:
+    """判断1-n之间有多少个素数，并输出所有素数列表。"""
+    PrimeNumbers = list()
+    for i in range(1,int(n/2)+1):
+        isPrimeNumber = True
+        for j in range(2,int(1+i/2)):
+            isPrimeNumber = isPrimeNumber and (i%j)
+        if isPrimeNumber:
+            PrimeNumbers.append(i)
+    return PrimeNumbers
+
+def exercise14(n:int) -> None:
+    """将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5"""
+    # print("{}=".format(n),end="")
+    PrimeNumbers = PrimeNumber(n)
+    factors = list()
+    i = int(1)
+    while(n!=1):
+        if not(n%PrimeNumbers[i]):
+            factors.append(PrimeNumbers[i])
+            n = n/PrimeNumbers[i]
+        else:
+            i+=1
+    print(factors)
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
-    exercise13()
+    # print(PrimeNumber(100))
+    exercise14(120)
