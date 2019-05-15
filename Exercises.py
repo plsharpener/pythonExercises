@@ -144,7 +144,14 @@ def exercise10() -> None:
     time.sleep(1)
     print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
 
+# exercise 11
+def exercise11(n:int) -> None:
+    """古典问题：有一对兔子，从出生后第3个月起每个月都生一对兔子，小兔子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？"""
+    if n == 1 or n == 2:
+        return 1
+    return exercise11(n-1)+exercise11(n-2)
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
-    exercise10()
+    print(exercise11(11))
