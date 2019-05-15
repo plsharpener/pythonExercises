@@ -103,5 +103,14 @@ def exercise5() -> None:
         y,z=z,y
     print(x,y,z)
 
+# exercise 6
+def exercise6(n:int) -> None:
+    """斐波那契数列"""
+    if n==0:
+        return 0
+    if n==1:
+        return 1
+    return exercise6(n-1)+exercise6(n-2)
+
 if __name__ == "__main__":
-    exercise5()
+    print(exercise6(10))
