@@ -104,7 +104,7 @@ def exercise5() -> None:
     print(x,y,z)
 
 # exercise 6
-def exercise6(n:int) -> None:
+def exercise6(n:int) -> int:
     """斐波那契数列"""
     if n==0:
         return 0
@@ -112,5 +112,15 @@ def exercise6(n:int) -> None:
         return 1
     return exercise6(n-1)+exercise6(n-2)
 
+# exercise 7
+def exercise7() -> None:
+    l1 = [1,2,3,4,5,6,7,8,9,10]
+    l2 = l1[:]
+    # l2 = l1
+    l1.pop()
+    print("L1:",l1)
+    print("L2:",l2)
+
 if __name__ == "__main__":
-    print(exercise6(10))
+    #print(exercise6(100))
+    exercise7()
