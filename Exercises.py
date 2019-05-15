@@ -151,7 +151,24 @@ def exercise11(n:int) -> None:
         return 1
     return exercise11(n-1)+exercise11(n-2)
 
+# exercise 12
+def exercise12() -> None:
+    """判断101-200之间有多少个素数，并输出所有素数。"""
+    countPrimeNumber = int(0)
+    for i in range(101,201):
+        isPrimeNumber = True
+        for j in range(2,int(1+i/2)):
+            isPrimeNumber = isPrimeNumber and (i%j)
+        if isPrimeNumber:
+            print(i)
+            countPrimeNumber+=1
+            if not(countPrimeNumber%10):
+                print(" ")
+    print("The total is {}".format(countPrimeNumber))
+
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
-    print(exercise11(11))
+    # print(exercise11(11))
+    exercise12()
