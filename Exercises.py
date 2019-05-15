@@ -1,4 +1,4 @@
-"""Python 100例"""
+"""Python 100例 https://www.runoob.com/python/python-100-examples.html"""
 import sys
 # exercise 1 
 def exercise1() -> None:
