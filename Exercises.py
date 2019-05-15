@@ -166,9 +166,16 @@ def exercise12() -> None:
                 print(" ")
     print("The total is {}".format(countPrimeNumber))
 
-
+# exercise 13
+def exercise13() -> None:
+    """打印出所有的"水仙花数"，所谓"水仙花数"是指一个三位数，其各位数字立方和等于该数本身。例如：153是一个"水仙花数"，因为153=1的三次方＋5的三次方＋3的三次方"""
+    for i in range(100,1000):
+        stri = str(i)
+        # print(stri)
+        if (eval(stri[0])**3+eval(stri[1])**3+eval(stri[2])**3) == i:   #参考https://www.cnblogs.com/wuxiangli/p/6046800.html
+            print(i)                                                    #eval(string) 字符串转化为算式   repr(x)  将对象x转化成表达字符串 
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
-    exercise12()
+    exercise13()
