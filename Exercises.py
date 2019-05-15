@@ -130,8 +130,14 @@ def exercise8() -> None:
             print("{}*{}={}".format(i,j,i*j),end=" ")
         print("\n")
 
+import time
+# exercise 9
+def exercise9() -> None:
+    """暂停一秒输出"""
+    time.sleep(1)
+    print("sleep 1s")
 
 
 if __name__ == "__main__":
     #print(exercise6(100))
-    exercise8()
+    exercise9()
