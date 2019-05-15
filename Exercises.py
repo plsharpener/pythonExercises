@@ -114,6 +114,7 @@ def exercise6(n:int) -> int:
 
 # exercise 7
 def exercise7() -> None:
+    """复制列表"""
     l1 = [1,2,3,4,5,6,7,8,9,10]
     l2 = l1[:]
     # l2 = l1
@@ -121,6 +122,16 @@ def exercise7() -> None:
     print("L1:",l1)
     print("L2:",l2)
 
+# exercise 8
+def exercise8() -> None:
+    """输出 9*9 乘法口诀表"""
+    for i in range(1,10):
+        for j in range(1,i+1):
+            print("{}*{}={}".format(i,j,i*j),end=" ")
+        print("\n")
+
+
+
 if __name__ == "__main__":
     #print(exercise6(100))
-    exercise7()
+    exercise8()
