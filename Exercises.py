@@ -326,15 +326,22 @@ def exercise24() -> None:
         total += fenzi/fenmu
         fenmu,fenzi = fenzi,fenzi+fenmu
     print(total)
-        
 
-
-
-
+# exercise 25
+def exercise25() -> None:
+    """求1+2!+3!+...+20!的和。"""
+    total = int(0)
+    for i in range(1,21):
+        product = int(1)
+        for i in range(1,i+1):
+            product *=i
+        total += product
+    print(total)
+            
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    exercise24()
+    exercise25()
