@@ -283,10 +283,18 @@ def exercise19() -> list:
             print(number)
     return wanshu
 
+# exercise 20
+def exercise20() -> None:
+    """一球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在第10次落地时，共经过多少米？第10次反弹多高？"""
+    print("第十次反弹高度：{}米".format(100/(2**10)))
+    total = 100
+    for i in range(1,10):
+        total += 2*100/(2**i)
+    print(total)
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    exercise19()
+    exercise20()
