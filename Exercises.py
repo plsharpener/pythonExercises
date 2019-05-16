@@ -370,6 +370,15 @@ def exercise29() -> None:
     print("他是{}位数".format(len(Sdigit)))
     for i in range(len(Sdigit)):
         print(Sdigit[-i-1],end="")
+
+# exercise 30
+def exercise30() -> None:
+    """一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。"""
+    digit = 123456
+    Sdigit = str(digit)
+    dxsdigit = Sdigit[::-1]
+    if Sdigit == dxsdigit:
+        print(Sdigit)
     
 
 if __name__ == "__main__":
@@ -380,4 +389,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise29()
+    exercise30()
