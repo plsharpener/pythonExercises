@@ -416,6 +416,13 @@ def exercise32() -> None:
     b = a[::-1]
     print(b)
 
+# exercise 33
+def exercise33() -> None:
+    """按逗号分隔列表。"""
+    a = [1,2,3,4,5,6,7,8,9]
+    s = ",".join(str(n) for n in a)
+    print(s)
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
@@ -424,4 +431,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise32()
+    exercise33()
