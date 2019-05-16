@@ -423,6 +423,26 @@ def exercise33() -> None:
     s = ",".join(str(n) for n in a)
     print(s)
 
+# exercise 34 
+"""练习函数调用"""
+# exercise 35
+"""文本颜色设置"""
+# exercise 36
+"""求1-100的素数"""
+
+# exercise 37
+def exercise37() -> None:
+    """对10个数进行排序。"""
+    a = [2,1,3,8,6,7,4,0,10,11]
+    a.sort()
+    print(a)
+
+
+
+
+
+
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
@@ -431,4 +451,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise33()
+    exercise37()
