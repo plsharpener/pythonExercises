@@ -252,10 +252,19 @@ def exercise17() -> None:
             others +=1
     print("latters = {} digit = {} kongge = {} others = {}".format(latters,digit,kongge,others))
 
+# exercise 18
+def exercise18() -> None:
+    """求s=a+aa+aaa+aaaa+aa...a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)，几个数相加由键盘控制"""
+    counts = int(input("输入一个数字:"))
+    total = int(0)
+    for i in range(1,counts+1):
+        total += eval("2"*i)
+    print(total)
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # exercise14(1000)
-    exercise17()
+    exercise18()
