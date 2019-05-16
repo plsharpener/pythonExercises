@@ -409,6 +409,13 @@ def exercise31() -> None:
     else:
         print("It's wrong")
 
+# exercise 32
+def exercise32() -> None:
+    """按相反的顺序输出列表的值。"""
+    a = [1,2,3,4,5,6,7,8,9,10]
+    b = a[::-1]
+    print(b)
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
@@ -417,4 +424,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise31()
+    exercise32()
