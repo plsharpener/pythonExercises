@@ -337,11 +337,17 @@ def exercise25() -> None:
             product *=i
         total += product
     print(total)
-            
+
+# exercise 26
+def exercise26(n:int) -> int:
+    """利用递归方法求5!"""
+    if n == 1:
+        return 1
+    return exercise26(n-1)*n
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    exercise25()
+    print(exercise26(10))
