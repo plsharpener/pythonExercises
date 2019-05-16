@@ -179,7 +179,7 @@ def exercise13() -> None:
 def PrimeNumber(n:int) -> list:
     """判断1-n之间有多少个素数，并输出所有素数列表。"""
     PrimeNumbers = list()
-    for i in range(1,int(n/2)+1):
+    for i in range(1,n+1):
         isPrimeNumber = True
         for j in range(2,int(1+i/2)):
             isPrimeNumber = isPrimeNumber and (i%j)
@@ -187,21 +187,23 @@ def PrimeNumber(n:int) -> list:
             PrimeNumbers.append(i)
     return PrimeNumbers
 
-def exercise14(n:int) -> None:
+def exercise14(n:int) -> list:
     """将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5"""
     PrimeNumbers = PrimeNumber(n)
+    # print(PrimeNumbers)
     factors = list()
     i = int(1)
-    print("{}=".format(n),end="")
+    # print("{}=".format(n),end="")
     while(n!=1):
         if not(n%PrimeNumbers[i]):
             factors.append(PrimeNumbers[i])
             n = n/PrimeNumbers[i]
         else:
             i+=1
-    print(factors[0],end="")
-    for i in factors[1:]:
-        print("*{}".format(i),end="")
+    # print(factors[0],end="")
+    # for i in factors[1:]:
+    #     print("*{}".format(i),end="")
+    return factors
 
 # exercise 15
 def exercise15() -> None:
@@ -255,16 +257,36 @@ def exercise17() -> None:
 # exercise 18
 def exercise18() -> None:
     """求s=a+aa+aaa+aaaa+aa...a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)，几个数相加由键盘控制"""
-    counts = int(input("输入一个数字:"))
+    counts = int(input("n="))
+    a = input("a=")
     total = int(0)
     for i in range(1,counts+1):
-        total += eval("2"*i)
+        print(a*i)
+        total += eval(a*i)
     print(total)
+
+# exercise 19
+def exercise19() -> list:
+    """一个数如果恰好等于它的因子之和，这个数就称为"完数"。例如6=1＋2＋3.编程找出1000以内的所有完数。"""
+    wanshu = list()
+    for number in range(2,1000):
+        factors = list()
+        for i in range(1,number):
+            if not(number%i):
+                factors.append(i)
+        # print(factors)
+        he = int(0)
+        for i in factors:
+            he+=i
+        if number == he:
+            wanshu.append(number)
+            print(number)
+    return wanshu
 
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
-    # exercise14(1000)
-    exercise18()
+    # print(exercise14(28))
+    exercise19()
