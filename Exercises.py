@@ -345,9 +345,20 @@ def exercise26(n:int) -> int:
         return 1
     return exercise26(n-1)*n
 
+# exercise 27
+def exercise27(s:str,l:int) -> None:
+    """利用递归函数调用方式，将所输入的5个字符，以相反顺序打印出来。"""
+    if l == 0:
+        return
+    print(s[l-1])
+    exercise27(s,l-1)
+
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    print(exercise26(10))
+    # s = "abcdefg"
+    # l = len(s)
+    # exercise27(s,l)
