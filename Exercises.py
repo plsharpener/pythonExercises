@@ -362,7 +362,15 @@ def exercise28() -> None:
         years +=2
     print(years)
 
-
+# exercise 29
+def exercise29() -> None:
+    """给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出各位数字"""
+    digit = 5000
+    Sdigit = str(digit)
+    print("他是{}位数".format(len(Sdigit)))
+    for i in range(len(Sdigit)):
+        print(Sdigit[-i-1],end="")
+    
 
 if __name__ == "__main__":
     #print(exercise6(100))
@@ -372,4 +380,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise28()
+    exercise29()
