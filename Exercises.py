@@ -374,12 +374,40 @@ def exercise29() -> None:
 # exercise 30
 def exercise30() -> None:
     """一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。"""
-    digit = 123456
+    digit = 123321
     Sdigit = str(digit)
     dxsdigit = Sdigit[::-1]
     if Sdigit == dxsdigit:
         print(Sdigit)
-    
+    else:
+        print("It is not huiwen")
+
+# exercise 31
+def exercise31() -> None:
+    """请输入星期几的第一个字母来判断一下是星期几，如果第一个字母一样，则继续判断第二个字母。"""
+    xingqi = input("输入星期:")
+    if xingqi[0] == "M" or xingqi[0] == "m":
+        print("Monday")
+    elif xingqi[0] == "T" or xingqi[0] == "t":
+        if xingqi[1] == "U" or xingqi[1] == "u":
+            print("Tuesday")
+        elif xingqi[1] == "H" or xingqi[1] == "h":
+            print("Thursdat")
+        else:
+            print("It's wrong")
+    elif xingqi[0] == "W" or xingqi[0] == "w":
+        print("Wednesday")
+    elif xingqi[0] == "F" or xingqi[0] == "f":
+        print("Friday")
+    elif xingqi[0] == "S" or xingqi[0] == "s":
+        if xingqi[1] == "A" or xingqi[1] == "a":
+            print("Saturday")
+        elif xingqi[1] == "U" or xingqi[1] == "u":
+            print("Sunday")
+        else:
+            print("It's wrong")
+    else:
+        print("It's wrong")
 
 if __name__ == "__main__":
     #print(exercise6(100))
@@ -389,4 +417,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise30()
+    exercise31()
