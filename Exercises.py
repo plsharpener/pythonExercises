@@ -233,10 +233,29 @@ def exercise16() -> None:
     miyazakiFirstBirthday = miyazakiBirthDate.replace(year=miyazakiBirthDate.year+1)
     print(miyazakiFirstBirthday.strftime('%d/%m/%Y'))
 
+# exercise 17
+def exercise17() -> None:
+    """输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。"""
+    latters = int(0)
+    kongge = int(0)
+    digit = int(0)
+    others = int(0)
+    strings = input("输入一串字符：")
+    for s in strings:
+        if s.isdigit():
+            digit +=1
+        elif s.isalpha():
+            latters+=1
+        elif s == " ":
+            kongge +=1
+        else:
+            others +=1
+    print("latters = {} digit = {} kongge = {} others = {}".format(latters,digit,kongge,others))
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # exercise14(1000)
-    exercise16()
+    exercise17()
