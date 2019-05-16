@@ -214,9 +214,29 @@ def exercise15() -> None:
     else:
         print("C")
 
+# exercise 16
+import datetime
+def exercise16() -> None:
+    """输出指定格式的日期"""
+    # 输出今日日期，格式是dd/mm/yyyy
+    print(datetime.date.today().strftime('%d/%m/%Y'))
+
+    # 创建时间对象
+    miyazakiBirthDate = datetime.date(1941,1,5)
+    print(miyazakiBirthDate.strftime('%d/%m/%Y'))
+
+    # 日期算术运算
+    miyazakiBirthNextDay = miyazakiBirthDate + datetime.timedelta(days=1)
+    print(miyazakiBirthNextDay.strftime("%d/%m/%Y"))
+
+    # 日期替换
+    miyazakiFirstBirthday = miyazakiBirthDate.replace(year=miyazakiBirthDate.year+1)
+    print(miyazakiFirstBirthday.strftime('%d/%m/%Y'))
+
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # exercise14(1000)
-    exercise15()
+    exercise16()
