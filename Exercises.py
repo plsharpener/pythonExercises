@@ -300,9 +300,27 @@ def exercise21(n:int) -> int:
         return 1
     return 2*(exercise21(n-1)+1)
 
+# exercise 22
+def exercise22() -> None:
+    """两个乒乓球队进行比赛，各出三人。甲队为a,b,c三人，乙队为x,y,z三人。已抽签决定比赛名单。有人向队员打听比赛的名单。a说他不和x比，c说他不和x,z比，请编程序找出三队赛手的名单。"""
+    pass
+
+# exercise 23
+def exercise23(n:int) -> None:
+    """打印出如下图案（菱形）"""
+    if not(n%2):
+        n+=1
+    for i in range(n):
+        if (i <= int(n/2)):
+            print((((2*i)+1)*"*").center(n," "))
+        else:
+            print((((2*(n-i-1))+1)*"*").center(n," "))
+    
+
+
 if __name__ == "__main__":
     #print(exercise6(100))
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    print(exercise21(10))
+    exercise23(10)
