@@ -316,6 +316,20 @@ def exercise23(n:int) -> None:
         else:
             print((((2*(n-i-1))+1)*"*").center(n," "))
     
+# exercise 24
+def exercise24() -> None:
+    """有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和"""
+    total = 0.0
+    fenzi = 2.0
+    fenmu = 1.0
+    for _ in range(20):
+        total += fenzi/fenmu
+        fenmu,fenzi = fenzi,fenzi+fenmu
+    print(total)
+        
+
+
+
 
 
 if __name__ == "__main__":
@@ -323,4 +337,4 @@ if __name__ == "__main__":
     # print(exercise11(11))
     # print(PrimeNumber(100))
     # print(exercise14(28))
-    exercise23(10)
+    exercise24()
