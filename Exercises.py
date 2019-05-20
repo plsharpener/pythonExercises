@@ -374,12 +374,74 @@ def exercise29() -> None:
 # exercise 30
 def exercise30() -> None:
     """一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。"""
-    digit = 123456
+    digit = 123321
     Sdigit = str(digit)
     dxsdigit = Sdigit[::-1]
     if Sdigit == dxsdigit:
         print(Sdigit)
-    
+    else:
+        print("It is not huiwen")
+
+# exercise 31
+def exercise31() -> None:
+    """请输入星期几的第一个字母来判断一下是星期几，如果第一个字母一样，则继续判断第二个字母。"""
+    xingqi = input("输入星期:")
+    if xingqi[0] == "M" or xingqi[0] == "m":
+        print("Monday")
+    elif xingqi[0] == "T" or xingqi[0] == "t":
+        if xingqi[1] == "U" or xingqi[1] == "u":
+            print("Tuesday")
+        elif xingqi[1] == "H" or xingqi[1] == "h":
+            print("Thursdat")
+        else:
+            print("It's wrong")
+    elif xingqi[0] == "W" or xingqi[0] == "w":
+        print("Wednesday")
+    elif xingqi[0] == "F" or xingqi[0] == "f":
+        print("Friday")
+    elif xingqi[0] == "S" or xingqi[0] == "s":
+        if xingqi[1] == "A" or xingqi[1] == "a":
+            print("Saturday")
+        elif xingqi[1] == "U" or xingqi[1] == "u":
+            print("Sunday")
+        else:
+            print("It's wrong")
+    else:
+        print("It's wrong")
+
+# exercise 32
+def exercise32() -> None:
+    """按相反的顺序输出列表的值。"""
+    a = [1,2,3,4,5,6,7,8,9,10]
+    b = a[::-1]
+    print(b)
+
+# exercise 33
+def exercise33() -> None:
+    """按逗号分隔列表。"""
+    a = [1,2,3,4,5,6,7,8,9]
+    s = ",".join(str(n) for n in a)
+    print(s)
+
+# exercise 34 
+"""练习函数调用"""
+# exercise 35
+"""文本颜色设置"""
+# exercise 36
+"""求1-100的素数"""
+
+# exercise 37
+def exercise37() -> None:
+    """对10个数进行排序。"""
+    a = [2,1,3,8,6,7,4,0,10,11]
+    a.sort()
+    print(a)
+
+
+
+
+
+
 
 if __name__ == "__main__":
     #print(exercise6(100))
@@ -389,4 +451,4 @@ if __name__ == "__main__":
     # s = "abcdefg"
     # l = len(s)
     # exercise27(s,l)
-    exercise30()
+    exercise37()
