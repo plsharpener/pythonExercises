@@ -29,8 +29,8 @@ for name,parameters in net.named_parameters():
 ip = torch.randn(1,1,32,32)
 out = net(ip)
 print("out.shape:",out.shape)
-net.zero_grad()
-out.backward(torch.ones(1,10))
+# net.zero_grad()
+# out.backward(torch.ones(1,10))
 
 target = torch.arange(0,10).view(1,10).float()
 criterion = nn.MSELoss()
@@ -45,3 +45,4 @@ optimizer.step()
 
 out = net(ip)
 loss = criterion(out,target)
+print(loss.item())

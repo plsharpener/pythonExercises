@@ -70,6 +70,7 @@ if __name__ == "__main__":
         running_loss = 0.0
         for i,data in enumerate(trainloader,0):
             inputs, labels = data
+            print(inputs,labels)
             optimizer.zero_grad()
 
             outputs = net(inputs)

@@ -7,6 +7,7 @@ import matplotlib.image as image
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
+import torch.autograd.Variable as Variable
 
 batch_size = 256
 epochs = 20
@@ -92,12 +93,7 @@ def test(model,device,test_loader):
    with torch.no_grad():
        for data, target in test_loader:
            data, target = data.to(DEVICE) , target.to(DEVICE)
-        #    print(target.shape)
-        #    print(data.shape)
-        #    print(type(data))
            output = model(data)
-        #    print("output:  ",output)
-        #    print("target:  ",target)
            test_loss += F.nll_loss(output, target, reduction='sum').item()
            pred = output.max(1,keepdim=True)[1]
            correct += pred.eq(target.view_as(pred)).sum().item()
@@ -110,16 +106,10 @@ def test(model,device,test_loader):
 def mydataset(imgpath):
     # img = cv2.imread("./three.png")  #用openCV读取图片
     img = cv2.imread(imgpath)
-    # cv2.imshow("img",img)
-    # cv2.waitKey()
-    # print(img.shape)
     img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) # 转化成灰度图像
     img = cv2.resize(img,(28,28))  #变换成28*28
     # print(img.shape)
     img = 255-img #图片反向
-    # print(img.shape)
-    # img.save(imgpath.split(".")[0]+".jpg")
-    # print(imgpath.split("/")[1].split(".")[0]+".jpg")
     cv2.imwrite(imgpath.split("/")[1].split(".")[0]+".jpg",img)
     img = torch.from_numpy(img) #numpy转换成torch.Tensor
     img = img.float() #数据类型转化成float型
