@@ -3,6 +3,7 @@ import sys
 import torch
 from torch.utils.data import Dataset
 from torch.autograd import Variable
+import pysnooper
 
 class traindataset(Dataset):
     def __init__(self,txt_file:str):
@@ -15,6 +16,7 @@ class traindataset(Dataset):
     def __getitem__(self,idx):
         return self.datas[idx]
 
+    # @pysnooper.snoop(output="./log.txt")  #保存中间结果，用于调试
     def str2float(self,strlist:list) -> list:
         """字符串转化为float"""
         for i in range(len(strlist)):
