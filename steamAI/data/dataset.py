@@ -6,9 +6,13 @@ from torch.autograd import Variable
 import pysnooper
 
 class traindataset(Dataset):
-    def __init__(self,txt_file:str):
-        datalist = self.readfile(txt_file)
-        self.datas = self.traindataset(datalist)
+    def __init__(self,txt_file:str,train=True):
+        if train:
+            datalist = self.readfile(txt_file)
+            self.datas = self.traindataset(datalist)
+        else:
+            datalist = self.readfile(txt_file)
+            self.datas = self.testdataset(datalist)
 
     def __len__(self):
         return len(self.datas)
@@ -43,7 +47,9 @@ class traindataset(Dataset):
 
     def testdataset(self,datalist:list):
         """测试数据集设置"""
-        testdatas = datalist
+        testdatas = []
+        for data in datalist:
+            testdatas.append((Variable(torch.tensor(data,dtype = torch.float32))))
         return testdatas
 
 

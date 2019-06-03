@@ -5,10 +5,11 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import data.dataset as dataset
 import torch.optim as optim
-import pysnooper
+# import pysnooper
 
-batch_size = 10
-epochs = 20
+batch_size = 20
+epochs = 100
+batch_size_test = 1
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class net(nn.Module):
@@ -77,7 +78,7 @@ class net2(nn.Module):
         return x
 
 
-@pysnooper.snoop(output="./log/log.log")
+# @pysnooper.snoop(output="./log/log.log")
 def train(model,device,train_loader,optimizer,epochs,lossfuc):
     """训练"""
     # model.train()
@@ -99,17 +100,41 @@ def train(model,device,train_loader,optimizer,epochs,lossfuc):
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()))
 
+def test(model,device,test_loader):
+    """输出结果"""
+    outputs = []
+    for batch_idx,data in enumerate(test_loader):
+        data = data.to(device)
+        output = model(data)
+        # outputs.append(list(output.numpy()))
+        outputs.append(output)
+        # if batch_idx == 10:
+        #     break
+    return outputs
+
+    
 
 
 
 if __name__ == "__main__":
+    # model = net2().to(DEVICE)
+    # optimizer = optim.Adam(model.parameters())
+    # datas = dataset.traindataset("./data/zhengqi_train.txt",train=True)
+    # trainloader = torch.utils.data.DataLoader(datas,batch_size=batch_size,shuffle=True,num_workers=0)
+    # lossfuc = nn.MSELoss()
+    # for epoch in range(1,epochs+1):
+    #     train(model,DEVICE,trainloader,optimizer,epoch,lossfuc)
+    # torch.save({"net":model.state_dict()},"./model_train{}_batch{}".format(epochs,batch_size))
+
     model = net2().to(DEVICE)
-    optimizer = optim.Adam(model.parameters())
-    datas = dataset.traindataset("./data/zhengqi_train.txt")
-    trainloader = torch.utils.data.DataLoader(datas,batch_size=batch_size,shuffle=True,num_workers=0)
-    lossfuc = nn.MSELoss()
-    for epoch in range(1,epochs+1):
-        train(model,DEVICE,trainloader,optimizer,epoch,lossfuc)
+    obj = torch.load("./model_train100_batch10")
+    model.load_state_dict(obj['net'])
+    datas = dataset.traindataset("./data/zhengqi_test.txt",train=False)
+    testloader = torch.utils.data.DataLoader(datas,batch_size=batch_size_test,shuffle=False)
+    outputs = test(model,DEVICE,testloader)
+    with open("./data/result.txt","w") as file:
+        for output in outputs:
+            file.write(str(output.item())+"\n")
     # traindatas,terget = datas[0] 
     # NET = net()
     # print(NET(traindatas))
