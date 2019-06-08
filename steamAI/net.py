@@ -23,6 +23,8 @@ class net(nn.Module):
         self.MergeVertex = nn.Linear(38,50)
         self.dropout = nn.Dropout(p=0.5)
         self.fc6 = nn.Linear(50,150)
+        self.fc8 = nn.Linear(150,500)
+        self.fc9 = nn.Linear(500,150)
         self.fc7 = nn.Linear(150,50)
         self.fc3 = nn.Linear(50,30)
         self.fc4 = nn.Linear(30,20)
@@ -39,6 +41,8 @@ class net(nn.Module):
         x = self.dropout(x)
         x = F.relu(self.fc6(x))
         x = self.dropout(x)
+        x = F.relu(self.fc8(x))
+        x = F.relu(self.fc9(x))
         x = F.relu(self.fc7(x))
         x = F.relu(self.fc3(x))
         x = F.relu(self.fc4(x))
@@ -77,12 +81,22 @@ def train(model,device,train_loader,optimizer,epochs,lossfuc):
         loss = lossfuc(output,target)
         loss.backward()
         optimizer.step()
-        if(batch_idx+1) %30 ==0:
-            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                epoch, batch_idx * len(data), len(train_loader.dataset),
-                100. * batch_idx / len(train_loader), loss.item()))
+        #if(batch_idx+1) %30 ==0:
+        #    print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+        #        epoch, batch_idx * len(data), len(train_loader.dataset),
+        #        100. * batch_idx / len(train_loader), loss.item()))
 
-def test(model,device,test_loader):
+def test(model,device,test_loader,lossfuc,epoch):
+    """ceshi"""
+    tol_loss = 0.0
+    for data,target in test_loader:
+        data,target = data.to(device) , target.to(device)
+        output = model(data)
+        loss = lossfuc(output,target)
+        tol_loss += loss
+    print("epoch:{} test loss:{}".format(epoch,tol_loss/len(test_loader)))
+
+def test1(model,device,test_loader):
     """输出结果"""
     outputs = []
     for batch_idx,data in enumerate(test_loader):
@@ -96,25 +110,31 @@ def test(model,device,test_loader):
 
 
 if __name__ == "__main__":
-    #model = net().to(DEVICE)
-    #optimizer = optim.SGD(model.parameters(),lr=0.05)
-    #datas = dataset.traindataset("./data/zhengqi_train.txt",train=True)
-    #trainloader = torch.utils.data.DataLoader(datas,batch_size=batch_size,shuffle=True,num_workers=0)
-    #lossfuc = nn.MSELoss()
-    #for epoch in range(1,epochs+1):
-    #    train(model,DEVICE,trainloader,optimizer,epoch,lossfuc)
+    model = net().to(DEVICE)
+    optimizer = optim.SGD(model.parameters(),lr=0.05)
+    datas = dataset.traindataset("./data/zhengqi_train.txt",train=True)
+    trains = datas[:2000]
+    tests = datas[2000:]
+    trainloader = torch.utils.data.DataLoader(trains,batch_size=batch_size,shuffle=True,num_workers=0)
+    testloader = torch.utils.data.DataLoader(tests,batch_size=batch_size_test,shuffle=False)
+
+
+    lossfuc = nn.MSELoss()
+    for epoch in range(1,epochs+1):
+        train(model,DEVICE,trainloader,optimizer,epoch,lossfuc)
+        test(model,DEVICE,testloader,lossfuc,epoch)
     #torch.save({"net":model.state_dict()},"./model_train{}".format(epochs))
 
 
-    model = net().to(DEVICE)
-    obj = torch.load("./model_train500")
-    model.load_state_dict(obj['net'])
-    datas = dataset.traindataset("./data/zhengqi_test.txt",train=False)
-    testloader = torch.utils.data.DataLoader(datas,batch_size=batch_size_test,shuffle=False)
-    outputs = test(model,DEVICE,testloader)
-    with open("./data/result.txt","w") as file:
-        for output in outputs:
-            file.write(str(output.item())+"\n")
+    #model = net().to(DEVICE)
+    #obj = torch.load("./model_train500")
+    #model.load_state_dict(obj['net'])
+    #datas = dataset.traindataset("./data/zhengqi_test.txt",train=False)
+    #testloader = torch.utils.data.DataLoader(datas,batch_size=batch_size_test,shuffle=False)
+    #outputs = test(model,DEVICE,testloader)
+    #with open("./data/result.txt","w") as file:
+    #    for output in outputs:
+    #        file.write(str(output.item())+"\n")
 
 
     # traindatas,terget = datas[0] 
