@@ -7,10 +7,12 @@ from torch.autograd import Variable
 import data.dataset as dataset
 import torch.optim as optim
 import time
+from tensorboardX import SummaryWriter
+import torch.onnx as torch_onnx
 # import pysnooper
 
 batch_size = 6
-epochs = 500
+epochs = 10000
 batch_size_test = 1
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -21,7 +23,7 @@ class net(nn.Module):
         self.fc1 = nn.Linear(7,7)
         self.fc2 = nn.Linear(3,3)
         self.MergeVertex = nn.Linear(38,50)
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.8)
         self.fc6 = nn.Linear(50,150)
         self.fc8 = nn.Linear(150,500)
         self.fc9 = nn.Linear(500,150)
@@ -39,11 +41,11 @@ class net(nn.Module):
         # x = Variable(torch.tensor(x,dtype=torch.float))
         x = F.relu(self.MergeVertex(x))
         x = self.dropout(x)
-        x = F.relu(self.fc6(x))
-        x = self.dropout(x)
-        x = F.relu(self.fc8(x))
-        x = F.relu(self.fc9(x))
-        x = F.relu(self.fc7(x))
+       # x = F.relu(self.fc6(x))
+       # x = self.dropout(x)
+       # x = F.relu(self.fc8(x))
+       # x = F.relu(self.fc9(x))
+       # x = F.relu(self.fc7(x))
         x = F.relu(self.fc3(x))
         x = F.relu(self.fc4(x))
         x = self.fc5(x)
@@ -95,6 +97,7 @@ def test(model,device,test_loader,lossfuc,epoch):
         loss = lossfuc(output,target)
         tol_loss += loss
     print("epoch:{} test loss:{}".format(epoch,tol_loss/len(test_loader)))
+    return tol_loss/len(test_loader)
 
 def test1(model,device,test_loader):
     """输出结果"""
@@ -110,6 +113,8 @@ def test1(model,device,test_loader):
 
 
 if __name__ == "__main__":
+    writerval = SummaryWriter(logdir="./logs/train.events")
+    writertarin = SumaryWriter(logdir="./logs/val.events")
     model = net().to(DEVICE)
     optimizer = optim.SGD(model.parameters(),lr=0.05)
     datas = dataset.traindataset("./data/zhengqi_train.txt",train=True)
@@ -117,12 +122,17 @@ if __name__ == "__main__":
     tests = datas[2000:]
     trainloader = torch.utils.data.DataLoader(trains,batch_size=batch_size,shuffle=True,num_workers=0)
     testloader = torch.utils.data.DataLoader(tests,batch_size=batch_size_test,shuffle=False)
-
+  #  dummy_input = Variable(torch.randn(1,38))
+  #  output = torch_onnx.export(model,dummy_input,"./test")
+#    writer.add_graph(model,input_to_model=(dummy_input))
 
     lossfuc = nn.MSELoss()
     for epoch in range(1,epochs+1):
         train(model,DEVICE,trainloader,optimizer,epoch,lossfuc)
-        test(model,DEVICE,testloader,lossfuc,epoch)
+        loss = test(model,DEVICE,testloader,lossfuc,epoch)
+        writerval.add_scalar('loss',loss,epoch)
+
+    #writer.close()
     #torch.save({"net":model.state_dict()},"./model_train{}".format(epochs))
 
 
